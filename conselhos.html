@@ -1,0 +1,76 @@
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Conselhos</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+    }
+    .div1{
+
+      position: absolute;
+
+      background-color: pink;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 18px;
+      padding: 18px;
+      height: 130;
+    }
+    .rodape{
+	position: absolute;
+	bottom: 0;
+	color: White;
+	font-family: Times;
+	width: 100%;
+	}
+  </style>
+  
+</head>   
+ <body>
+   
+  <div class="div1" style= "text-align:center">
+    <textarea style="background-color: White; border-radius: 5px" id="cos" cols="40" rows="4" readonly=""> </textarea>
+    <br><br> 
+    <button style="background-color: White; border-radius: 5px; font-family: Times ; border-color:#f435; box-shadow: 2px 2px 10px black; height:30" id="conselheiro"> Gerar conselho </button>
+  </div>
+  
+  
+  
+  <script>
+   var bc= document.querySelector("#conselheiro")
+   bc.addEventListener("click",function(){
+   gerarConselho()  
+  
+   })
+   function gerarConselho(){
+     var url= "https://api.adviceslip.com/advice"
+     var busca= new XMLHttpRequest()
+     busca.open("GET",url,false)
+     busca.send()
+     busca=JSON.parse(busca.responseText)
+     console.log(busca)
+     var conselhof=busca["slip"]["advice"]
+     console.log(conselhof)
+     document.getElementById("cos").value=conselhof
+     
+   }
+  </script>
+  
+  
+  
+  <footer class="rodape">
+  <hr style="border-color: #fff">
+  <i>Criado por Amish.
+  <address>
+  Você pode encontrá-la no <a href="http://www.instagram.com/amishhakori"> Instagram</a> </i>
+  </address>
+  </footer>
+  
+  
+ </body>
+ </html>
